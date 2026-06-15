@@ -1,7 +1,27 @@
-import Image from "next/image";
+import LeftSidebar from "@/components/homepage/news/LeftSidebar";
 
-export default function Home() {
+async function getCategories() {
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/news/categories",
+  );
+  const data = await res.json();
+  return data.data;
+}
+
+export default async function Home() {
+  const categories = await getCategories();
+  console.log(categories.news_category, "Categories");
   return (
-   <h2 className="text-green-500">Homepage</h2>
+    <div className="container mx-auto grid grid-cols-12 gap-4 my-[80px">
+      <div className=" col-span-3">
+        <LeftSidebar categories={categories} />
+      </div>
+      <div className="font-bold text-3xl bg-purple-100 col-span-6">
+        All News
+      </div>
+      <div className="font-bold text-3xl bg-yellow-100 col-span-3">
+        Social Icons
+      </div>
+    </div>
   );
 }
