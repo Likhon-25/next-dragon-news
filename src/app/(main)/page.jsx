@@ -1,4 +1,5 @@
 import LeftSidebar from "@/components/homepage/news/LeftSidebar";
+import RightSidebar from "@/components/homepage/news/RightSidebar";
 
 async function getCategories() {
   const res = await fetch(
@@ -14,13 +15,13 @@ export default async function Home() {
   return (
     <div className="container mx-auto grid grid-cols-12 gap-4 my-[80px">
       <div className=" col-span-3">
-        <LeftSidebar categories={categories} />
+        <LeftSidebar categories={categories} activeId={null}/>
       </div>
       <div className="font-bold text-3xl bg-purple-100 col-span-6">
         All News
       </div>
       <div className="font-bold text-3xl bg-yellow-100 col-span-3">
-        Social Icons
+        <RightSidebar />
       </div>
     </div>
   );
